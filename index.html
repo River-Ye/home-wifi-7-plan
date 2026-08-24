@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="28 坪三房、四條 Cat6、Wi‑Fi 7 與全 2.5GbE 的完整居家網路採購與設定方案。">
+  <meta name="theme-color" content="#0b132b">
+  <title>28 坪三房｜Wi‑Fi 7 全屋網路建置書</title>
+  <style>
+    :root {
+      --ink: #0b132b;
+      --ink-2: #17213d;
+      --paper: #f4f7f5;
+      --white: #ffffff;
+      --cyan: #39d0d8;
+      --lime: #b7f34a;
+      --amber: #ffb454;
+      --muted: #667085;
+      --line: #d7dfdf;
+      --danger: #d14b3f;
+      --radius: 20px;
+      --shadow: 0 20px 50px rgba(11, 19, 43, .10);
+      --mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+      --sans: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    img, svg { display: block; max-width: 100%; }
+    code, .mono { font-family: var(--mono); }
+    code {
+      padding: .1em .35em;
+      border-radius: 5px;
+      background: rgba(11, 19, 43, .07);
+      font-size: .92em;
+    }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 8px;
+      left: 8px;
+      padding: 10px 14px;
+      color: var(--white);
+      background: var(--ink);
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-nav {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      color: var(--white);
+      background: rgba(11, 19, 43, .94);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 62px;
+      gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; text-decoration: none; }
+    .signal-mark {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 6px rgba(183, 243, 74, .15), 0 0 28px rgba(183, 243, 74, .65);
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: .88rem; }
+    .nav-links a { color: #d9e1ed; text-decoration: none; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--lime); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 86px 0 74px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 76% 18%, rgba(57, 208, 216, .22), transparent 27%),
+        radial-gradient(circle at 18% 100%, rgba(183, 243, 74, .12), transparent 30%),
+        var(--ink);
+    }
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+      pointer-events: none;
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.45fr .75fr; gap: 68px; align-items: end; }
+    .eyebrow { margin: 0 0 14px; color: var(--lime); font: 750 .78rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 850px; margin-bottom: 22px; font-size: clamp(2.65rem, 6vw, 5.9rem); line-height: .98; letter-spacing: -.055em; }
+    .hero-lede { max-width: 720px; margin-bottom: 30px; color: #d9e1ed; font-size: clamp(1rem, 1.5vw, 1.24rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      color: var(--white);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button.primary { border-color: var(--lime); color: var(--ink); background: var(--lime); }
+    .button:hover { transform: translateY(-1px); }
+    .budget-stamp {
+      position: relative;
+      padding: 27px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 26px;
+      background: rgba(255,255,255,.07);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .budget-stamp::before { position: absolute; inset: 10px; border: 1px dashed rgba(57,208,216,.35); border-radius: 18px; content: ""; pointer-events: none; }
+    .budget-label { position: relative; color: var(--cyan); font: 700 .72rem/1.4 var(--mono); letter-spacing: .1em; }
+    .budget-number { position: relative; display: block; margin: 7px 0 0; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1; letter-spacing: -.06em; }
+    .budget-note { position: relative; margin: 12px 0 0; color: #d9e1ed; font-size: .86rem; }
+
+    main section { padding: 88px 0; }
+    main section:nth-child(even) { background: var(--white); }
+    .section-head { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; margin-bottom: 46px; align-items: start; }
+    .section-index { color: var(--muted); font: 750 .78rem/1.4 var(--mono); letter-spacing: .1em; }
+    h2 { margin-bottom: 14px; font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.08; letter-spacing: -.045em; }
+    h3 { margin-bottom: 10px; font-size: 1.15rem; line-height: 1.35; }
+    .section-intro { max-width: 760px; margin-bottom: 0; color: var(--muted); font-size: 1.04rem; }
+
+    .decision-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 25px 28px;
+      border-left: 7px solid var(--lime);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .decision-bar p { margin: 0; color: #d9e1ed; }
+    .decision-bar strong { color: var(--white); }
+    .machine-count { min-width: 150px; color: var(--lime); text-align: right; font: 900 2.5rem/1 var(--mono); }
+    .machine-count small { display: block; margin-top: 6px; color: #d9e1ed; font: 600 .72rem/1.3 var(--sans); }
+
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
+    .role { min-height: 290px; padding: 30px; background: var(--white); }
+    .role-no { color: var(--cyan); font: 800 2rem/1 var(--mono); }
+    .role h3 { margin-top: 45px; font-size: 1.35rem; }
+    .role p { margin-bottom: 14px; color: var(--muted); }
+    .role .verdict { color: var(--ink); font-weight: 800; }
+
+    .table-shell { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { padding: 18px 20px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); background: #edf2f1; font: 750 .75rem/1.4 var(--mono); letter-spacing: .06em; }
+    tbody tr:last-child td, tfoot tr:last-child td { border-bottom: 0; }
+    td strong { display: block; }
+    .price { white-space: nowrap; font-family: var(--mono); font-weight: 800; }
+    .total-row td { color: var(--white); background: var(--ink); }
+    .total-row .price { color: var(--lime); font-size: 1.15rem; }
+    .source-link { color: #1a6e74; font-size: .84rem; font-weight: 700; }
+    .callout {
+      margin-top: 20px;
+      padding: 18px 22px;
+      border: 1px solid #f3c57f;
+      border-radius: 14px;
+      background: #fff8ed;
+      color: #6c4611;
+      font-size: .92rem;
+    }
+    .callout strong { color: #4b2d06; }
+
+    .diagram-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    figure { margin: 0; }
+    .diagram {
+      height: 100%;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f9fbfa;
+    }
+    figcaption { margin-top: 14px; color: var(--muted); font-size: .86rem; }
+    .port-map { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .port-box { padding: 22px; border-top: 4px solid var(--cyan); border-radius: 4px 4px 14px 14px; background: var(--ink); color: var(--white); }
+    .port-box:nth-child(2) { border-color: var(--lime); }
+    .port-box:nth-child(3) { border-color: var(--amber); }
+    .port-box h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .port-box h3 span { color: #cbd5e1; font: 600 .7rem/1.2 var(--mono); }
+    .port-box ol { margin: 14px 0 0; padding-left: 21px; color: #d9e1ed; font-size: .9rem; }
+    .port-box li + li { margin-top: 5px; }
+
+    .vlan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .vlan { position: relative; padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    .vlan::before { display: block; width: 46px; height: 5px; margin-bottom: 24px; border-radius: 9px; background: var(--cyan); content: ""; }
+    .vlan:nth-child(2)::before { background: var(--lime); }
+    .vlan:nth-child(3)::before { background: var(--amber); }
+    .vlan-id { color: var(--muted); font: 750 .76rem/1.2 var(--mono); }
+    .vlan h3 { margin-top: 8px; font-size: 1.4rem; }
+    .vlan p { margin-bottom: 0; color: var(--muted); }
+    .rules { display: grid; grid-template-columns: .7fr 1.3fr; gap: 50px; margin-top: 42px; }
+    .rule-list { margin: 0; padding: 0; list-style: none; counter-reset: rules; }
+    .rule-list li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); counter-increment: rules; }
+    .rule-list li::before { color: var(--cyan); content: counter(rules, decimal-leading-zero); font: 800 .78rem/1.8 var(--mono); }
+    .rule-list strong { display: block; }
+    .rule-list span { color: var(--muted); font-size: .9rem; }
+
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { padding: 19px 4px; cursor: pointer; font-weight: 820; }
+    details > div { padding: 0 4px 22px; color: var(--muted); }
+    details ul { margin-bottom: 0; }
+
+    .timeline { position: relative; margin: 0; padding: 0; list-style: none; counter-reset: install; }
+    .timeline::before { position: absolute; top: 12px; bottom: 12px; left: 24px; width: 2px; background: var(--line); content: ""; }
+    .timeline li { position: relative; display: grid; grid-template-columns: 50px 1fr; gap: 22px; padding-bottom: 35px; counter-increment: install; }
+    .timeline li:last-child { padding-bottom: 0; }
+    .timeline li::before { z-index: 1; display: grid; place-items: center; width: 50px; height: 50px; border: 4px solid var(--paper); border-radius: 50%; color: var(--ink); background: var(--lime); content: counter(install); font: 900 .9rem/1 var(--mono); }
+    .timeline h3 { margin: 4px 0 6px; }
+    .timeline p { margin-bottom: 0; color: var(--muted); }
+
+    .test-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 40px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
+    .test { padding: 21px; background: var(--white); }
+    .test strong { display: block; margin-bottom: 4px; font: 850 1.1rem/1.4 var(--mono); }
+    .test span { color: var(--muted); font-size: .84rem; }
+
+    .alternatives { display: grid; gap: 14px; }
+    .alternative { display: grid; grid-template-columns: 1fr 140px 1.3fr; gap: 24px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .alternative:first-child { border-top: 1px solid var(--line); }
+    .alternative .rank { color: var(--muted); font: 700 .72rem/1.3 var(--mono); }
+    .alternative .alt-price { font: 900 1.2rem/1.3 var(--mono); }
+    .alternative p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .source-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 45px; margin: 0; padding: 0; list-style: none; }
+    .source-list li { padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .source-list a { font-weight: 750; }
+    .source-list span { display: block; color: var(--muted); font-size: .83rem; }
+
+    footer { padding: 45px 0 60px; color: #cbd5e1; background: var(--ink); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 40px; }
+    footer p { max-width: 760px; margin: 0; }
+    .updated { color: var(--lime); font: 700 .76rem/1.7 var(--mono); white-space: nowrap; }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-copy, .budget-stamp { animation: rise .6s ease-out both; }
+    .budget-stamp { animation-delay: .12s; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 65px; }
+      .hero-grid, .section-head, .rules { grid-template-columns: 1fr; gap: 25px; }
+      .budget-stamp { max-width: 430px; }
+      .role-grid, .vlan-grid { grid-template-columns: 1fr; }
+      .role { min-height: 0; }
+      .role h3 { margin-top: 26px; }
+      .diagram-grid { grid-template-columns: 1fr; }
+      .port-map { grid-template-columns: 1fr; }
+      .test-strip { grid-template-columns: 1fr 1fr; }
+      .alternative { grid-template-columns: 1fr 120px; }
+      .alternative p { grid-column: 1 / -1; }
+      .source-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 26px, 1160px); }
+      .hero { padding: 53px 0 48px; }
+      h1 { font-size: clamp(2.45rem, 14vw, 4.2rem); }
+      main section { padding: 65px 0; }
+      .decision-bar { grid-template-columns: 1fr; }
+      .machine-count { text-align: left; }
+      .test-strip { grid-template-columns: 1fr; }
+      .alternative { grid-template-columns: 1fr; gap: 8px; }
+      .footer-inner { flex-direction: column; }
+      .updated { white-space: normal; }
+      .diagram { padding: 10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要內容</a>
+
+  <nav class="site-nav" aria-label="頁面導覽">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="signal-mark" aria-hidden="true"></span>HOME / 2.5G</a>
+      <div class="nav-links">
+        <a href="#answer">答案</a>
+        <a href="#buy">採購</a>
+        <a href="#layout">佈局</a>
+        <a href="#security">隔離</a>
+        <a href="#install">安裝</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">28 坪 · 四條 Cat6 · 500M/500M</p>
+        <h1>兩個 Wi‑Fi 點，<br>全屋 2.5G。</h1>
+        <p class="hero-lede">一套真的放得進現有格局、支援 6GHz Wi‑Fi 7、全有線回程，而且設備含稅價仍壓在三萬元內的建置書。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#buy">直接看買幾台</a>
+          <a class="button" href="#layout">看接線與位置</a>
+        </div>
+      </div>
+      <aside class="budget-stamp" aria-label="方案設備預算">
+        <span class="budget-label">MACHINE SUBTOTAL</span>
+        <strong class="budget-number">$28,818</strong>
+        <p class="budget-note">6 台設備；距離 NT$30,000 尚餘 NT$1,182 給排插與缺少的短網路線。</p>
+      </aside>
+    </div>
+  </header>
+
+  <main id="content">
+    <section id="answer">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">01 / FINAL ANSWER</span>
+          <div>
+            <h2>最後建議：三台 UX7，三台 5 埠交換器。</h2>
+            <p class="section-intro">弱電箱內的 UX7 當路由器與本機控制器，關閉 Wi‑Fi；客廳、工作室各一台 UX7 只當 AP。三台 TP‑Link 交換器分別放弱電箱、客廳、工作室。</p>
+          </div>
+        </div>
+
+        <div class="decision-bar">
+          <p><strong>你實際會有 2 個發射 Wi‑Fi 的位置。</strong><br>第 3 台 UX7 藏在弱電箱做網路大腦，金屬箱內不浪費無線電；兩個 AP 都走 Cat6 有線回程、各自用 USB‑C 供電，完全不需要 PoE。</p>
+          <div class="machine-count">6 台<small>3× UX7 + 3× 交換器</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">02 / ROUTER ≠ SWITCH</span>
+          <div>
+            <h2>路由器管邊界，交換器管插孔。</h2>
+            <p class="section-intro">這三種角色很常被裝在同一台消費型機器裡，所以才容易混淆。你的方案刻意拆清楚，故障與設定都比較容易定位。</p>
+          </div>
+        </div>
+
+        <div class="role-grid">
+          <article class="role">
+            <span class="role-no">R</span>
+            <h3>路由器／閘道器</h3>
+            <p>負責 PPPoE、DHCP、IPv6、防火牆、VLAN、VPN，以及家裡和 Internet 之間的所有決策。</p>
+            <p class="verdict">本案：弱電箱 UX7 ×1</p>
+          </article>
+          <article class="role">
+            <span class="role-no">S</span>
+            <h3>交換器</h3>
+            <p>把一條有線網路擴成多個 2.5G 插孔；同一 LAN 裡桌電傳 NAS，資料由交換器直接轉送。</p>
+            <p class="verdict">本案：TL‑SG105‑M2 ×3</p>
+          </article>
+          <article class="role">
+            <span class="role-no">A</span>
+            <h3>無線基地台 AP</h3>
+            <p>把有線網路變成 2.4 / 5 / 6GHz Wi‑Fi；同一套 SSID 與漫遊設定帶來 Mesh 使用體驗。</p>
+            <p class="verdict">本案：客廳、工作室 UX7 ×2</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="buy">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">03 / SHOPPING LIST</span>
+          <div>
+            <h2>照這張表買，不多也不少。</h2>
+            <p class="section-intro">價格查核日為 2026‑08‑24。UX7 採台灣官網顯示的「營業稅與附加費已含」較高價計算，不用好看的未稅數字低估預算。</p>
+          </div>
+        </div>
+
+        <div class="table-shell" role="region" aria-label="設備採購清單" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>品項</th>
+                <th>數量</th>
+                <th>放哪裡／做什麼</th>
+                <th>單價</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Ubiquiti UniFi Express 7（UX7）</strong><a class="source-link" href="https://tw.store.ui.com/tw/zh-tw/products/ux7" target="_blank" rel="noreferrer">官方商店與售價 ↗</a></td>
+                <td class="price">3 台</td>
+                <td>弱電箱閘道器 ×1；客廳、工作室 AP ×2。三頻 Wi‑Fi 7、6GHz、10G + 2.5G 網路孔、USB‑C 變壓器隨附。</td>
+                <td class="price">NT$8,307</td>
+                <td class="price">NT$24,921</td>
+              </tr>
+              <tr>
+                <td><strong>TP‑Link TL‑SG105‑M2</strong><a class="source-link" href="https://24h.pchome.com.tw/prod/DRAN3C-A900BHMFK" target="_blank" rel="noreferrer">即時通路價 ↗</a> · <a class="source-link" href="https://www.tp-link.com/tw/business-networking/soho-switch-unmanaged/tl-sg105-m2/" target="_blank" rel="noreferrer">官方規格 ↗</a></td>
+                <td class="price">3 台</td>
+                <td>弱電箱、客廳、工作室各一。5 埠全為 100M / 1G / 2.5G，自動協商、無風扇、電源隨附。</td>
+                <td class="price">NT$1,299</td>
+                <td class="price">NT$3,897</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td colspan="4"><strong>設備小計</strong>（NAS、筆電底座、施工不含）</td>
+                <td class="price">NT$28,818</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="callout"><strong>剩下 NT$1,182 怎麼用：</strong>先買一個薄型一轉三排插給弱電箱，再只補「目前缺少」的 Cat6 短跳線。連同兩房預留，現有設備全接約需 15 條；未來 NAS 與兩台新主機都到位時最多 18 條。家中與設備通常已有一部分；若要一次全換高階品牌線，應把線材另列預算，不要犧牲散熱或買來路不明的電源。</div>
+      </div>
+    </section>
+
+    <section id="layout">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">04 / WIRED BACKHAUL</span>
+          <div>
+            <h2>四條牆內線，剛好把整屋串起來。</h2>
+            <p class="section-intro">下圖只重畫網路相關空間，不含地址或原始建商圖面。青色是 Cat6；淡色圓環表示起始覆蓋範圍，不代表 6GHz 一定能穿過所有牆。</p>
+          </div>
+        </div>
+
+        <div class="diagram-grid">
+          <figure class="diagram">
+            <svg viewBox="0 0 720 430" role="img" aria-labelledby="floor-title floor-desc">
+              <title id="floor-title">簡化平面配置</title>
+              <desc id="floor-desc">弱電箱位於入口左側；客廳 AP 位於客廳文字左側牆邊；工作室 AP 位於右下房間靠門和走道處。</desc>
+              <defs>
+                <radialGradient id="signalLiving">
+                  <stop offset="0" stop-color="#39d0d8" stop-opacity=".34"/>
+                  <stop offset="1" stop-color="#39d0d8" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="signalStudio">
+                  <stop offset="0" stop-color="#b7f34a" stop-opacity=".34"/>
+                  <stop offset="1" stop-color="#b7f34a" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect x="18" y="18" width="684" height="394" rx="7" fill="#fff" stroke="#0b132b" stroke-width="4"/>
+              <path d="M360 18V220M520 18V220M360 220V412M232 278H18M232 220V412" fill="none" stroke="#9aa8aa" stroke-width="3"/>
+              <path d="M232 278H360" fill="none" stroke="#9aa8aa" stroke-width="3"/>
+              <circle cx="92" cy="187" r="170" fill="url(#signalLiving)"/>
+              <circle cx="390" cy="255" r="185" fill="url(#signalStudio)"/>
+              <g fill="#0b132b" font-family="system-ui, sans-serif" font-weight="700" font-size="18">
+                <text x="155" y="120">客廳</text>
+                <text x="404" y="105">房間二</text>
+                <text x="565" y="105">房間三</text>
+                <text x="74" y="344">廚房</text>
+                <text x="270" y="330">浴廁</text>
+                <text x="520" y="330">工作室</text>
+              </g>
+              <g fill="#667085" font-family="system-ui, sans-serif" font-size="13">
+                <text x="405" y="128">有線預留</text>
+                <text x="566" y="128">有線預留</text>
+                <text x="24" y="397">大門入口</text>
+              </g>
+              <g fill="none" stroke="#39d0d8" stroke-width="4" stroke-linecap="round" stroke-dasharray="7 7">
+                <path d="M52 365C37 292 38 213 75 188"/>
+                <path d="M52 365C173 392 322 333 384 255"/>
+                <path d="M52 365C168 216 342 173 438 156"/>
+                <path d="M52 365C207 209 463 150 598 156"/>
+              </g>
+              <g>
+                <rect x="28" y="344" width="48" height="40" rx="7" fill="#0b132b"/>
+                <path d="M38 365h28" stroke="#ffb454" stroke-width="4"/>
+                <circle cx="52" cy="354" r="4" fill="#ffb454"/>
+                <text x="82" y="359" fill="#0b132b" font-size="12" font-family="system-ui, sans-serif" font-weight="800">弱電箱</text>
+                <text x="82" y="376" fill="#667085" font-size="11" font-family="system-ui, sans-serif">UX7 #1 · Wi‑Fi 關閉</text>
+              </g>
+              <g>
+                <circle cx="75" cy="188" r="15" fill="#39d0d8" stroke="#0b132b" stroke-width="4"/>
+                <circle cx="75" cy="188" r="5" fill="#0b132b"/>
+                <text x="98" y="185" fill="#0b132b" font-size="12" font-family="system-ui, sans-serif" font-weight="800">AP #1</text>
+                <text x="98" y="201" fill="#667085" font-size="11" font-family="system-ui, sans-serif">客廳牆邊</text>
+              </g>
+              <g>
+                <circle cx="384" cy="255" r="15" fill="#b7f34a" stroke="#0b132b" stroke-width="4"/>
+                <circle cx="384" cy="255" r="5" fill="#0b132b"/>
+                <text x="405" y="250" fill="#0b132b" font-size="12" font-family="system-ui, sans-serif" font-weight="800">AP #2</text>
+                <text x="405" y="267" fill="#667085" font-size="11" font-family="system-ui, sans-serif">房門／走道側</text>
+              </g>
+              <g fill="#fff" stroke="#0b132b" stroke-width="3">
+                <rect x="425" y="146" width="26" height="20" rx="4"/>
+                <rect x="585" y="146" width="26" height="20" rx="4"/>
+              </g>
+            </svg>
+            <figcaption>起始點位：客廳網路孔旁；工作室靠房門／走道。若可用短明線把 AP 移到開放高櫃，通常比貼牆、藏電視後方更好。</figcaption>
+          </figure>
+
+          <figure class="diagram">
+            <svg viewBox="0 0 720 430" role="img" aria-labelledby="topology-title topology-desc">
+              <title id="topology-title">網路接線拓樸</title>
+              <desc id="topology-desc">中華電信光纖數據機連接弱電箱 UX7，再連中央交換器，分送客廳、工作室及兩間預留房。</desc>
+              <rect x="24" y="24" width="672" height="382" rx="18" fill="#0b132b"/>
+              <g fill="none" stroke="#39d0d8" stroke-width="5" stroke-linecap="round">
+                <path d="M130 94H255"/>
+                <path d="M365 94H490V184"/>
+                <path d="M490 234V315H186"/>
+                <path d="M490 234V315H354"/>
+                <path d="M490 234V315H520"/>
+                <path d="M490 234V315H634"/>
+              </g>
+              <g fill="#fff" stroke="#39d0d8" stroke-width="3">
+                <rect x="50" y="67" width="80" height="54" rx="10"/>
+                <rect x="255" y="58" width="110" height="72" rx="13"/>
+                <rect x="428" y="184" width="124" height="50" rx="10"/>
+              </g>
+              <g fill="#0b132b" font-family="system-ui, sans-serif" text-anchor="middle">
+                <text x="90" y="91" font-size="12" font-weight="800">CHT ONT</text>
+                <text x="90" y="108" font-size="10">500 / 500M</text>
+                <text x="310" y="84" font-size="12" font-weight="800">UX7 #1</text>
+                <text x="310" y="102" font-size="10">Gateway / Controller</text>
+                <text x="310" y="118" font-size="10">Wi‑Fi OFF</text>
+                <text x="490" y="205" font-size="12" font-weight="800">5埠 2.5G</text>
+                <text x="490" y="221" font-size="10">弱電箱中央交換器</text>
+              </g>
+              <g fill="#f4f7f5" stroke="#b7f34a" stroke-width="3">
+                <rect x="118" y="315" width="136" height="58" rx="10"/>
+                <rect x="286" y="315" width="136" height="58" rx="10"/>
+                <rect x="468" y="315" width="104" height="58" rx="10"/>
+                <rect x="582" y="315" width="104" height="58" rx="10"/>
+              </g>
+              <g fill="#0b132b" font-family="system-ui, sans-serif" text-anchor="middle">
+                <text x="186" y="339" font-size="12" font-weight="800">客廳 UX7 AP</text>
+                <text x="186" y="357" font-size="10">→ 5埠交換器</text>
+                <text x="354" y="339" font-size="12" font-weight="800">工作室 UX7 AP</text>
+                <text x="354" y="357" font-size="10">→ 5埠交換器</text>
+                <text x="520" y="339" font-size="12" font-weight="800">房間二</text>
+                <text x="520" y="357" font-size="10">Main 預留</text>
+                <text x="634" y="339" font-size="12" font-weight="800">房間三</text>
+                <text x="634" y="357" font-size="10">Main 預留</text>
+              </g>
+              <g fill="#cbd5e1" font-family="ui-monospace, monospace" font-size="10">
+                <text x="151" y="84">WAN</text>
+                <text x="385" y="84">2.5G LAN</text>
+                <text x="505" y="272">四條牆內 Cat6</text>
+              </g>
+            </svg>
+            <figcaption>所有回程都走牆內 Cat6。Mesh 在這裡代表統一 SSID、管理與漫遊，不使用會犧牲速度的無線回程。</figcaption>
+          </figure>
+        </div>
+
+        <div class="port-map" aria-label="三台交換器埠位分配">
+          <article class="port-box">
+            <h3>弱電箱 <span>5 / 5 USED</span></h3>
+            <ol><li>UX7 #1 LAN</li><li>客廳牆孔</li><li>工作室牆孔</li><li>房間二預留</li><li>房間三預留</li></ol>
+          </article>
+          <article class="port-box">
+            <h3>客廳 <span>5 / 5 USED</span></h3>
+            <ol><li>UX7 #2 下行</li><li>電視</li><li>PS5</li><li>未來 Switch 2</li><li>未來 Xbox</li></ol>
+          </article>
+          <article class="port-box">
+            <h3>工作室 <span>5 / 5 USED</span></h3>
+            <ol><li>UX7 #3 下行</li><li>桌電</li><li>筆電／底座 1</li><li>筆電／底座 2</li><li>未來 NAS</li></ol>
+          </article>
+        </div>
+        <div class="callout"><strong>擴充規則很簡單：</strong>目前每台 5 埠剛好用滿。哪個房間多出第 5 台有線終端，就把該房交換器換成 8 埠 2.5G，原本 5 埠移去房間二或三，不必重買整套。</div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">05 / VLAN + FIREWALL</span>
+          <div>
+            <h2>有線全信任，Wi‑Fi 分三區。</h2>
+            <p class="section-intro">這正好符合你的選擇：所有有線設備留在同一個 Main VLAN；只有 IoT 與訪客 Wi‑Fi 被隔離。非管理型交換器在這個前提下足夠，也讓預算留在線材和供電。</p>
+          </div>
+        </div>
+
+        <div class="vlan-grid">
+          <article class="vlan">
+            <span class="vlan-id">VLAN 10 · 192.168.10.0/24</span>
+            <h3>Main</h3>
+            <p>所有有線設備、NAS、AP 管理與主要 SSID。可互相傳檔，也可管理家中網路。</p>
+          </article>
+          <article class="vlan">
+            <span class="vlan-id">VLAN 20 · 192.168.20.0/24</span>
+            <h3>IoT</h3>
+            <p>家電與低信任裝置。只准 Internet、DNS、NTP；預設不能碰 NAS、Main 或管理頁。</p>
+          </article>
+          <article class="vlan">
+            <span class="vlan-id">VLAN 30 · 192.168.30.0/24</span>
+            <h3>Guest</h3>
+            <p>訪客上網。啟用 client isolation，阻擋所有 private network 與設備管理介面。</p>
+          </article>
+        </div>
+
+        <div class="rules">
+          <div>
+            <h3>防火牆規則順序</h3>
+            <p class="section-intro">由上到下比對；允許愈少、規則愈清楚，之後愈好維護。</p>
+          </div>
+          <ol class="rule-list">
+            <li><div><strong>Allow established / related</strong><span>回應既有連線，避免正常封包被擋。</span></div></li>
+            <li><div><strong>Allow Main → any</strong><span>可信任的電腦、主機與 NAS 正常使用。</span></div></li>
+            <li><div><strong>Allow IoT → DNS / NTP / WAN</strong><span>只給基本解析、校時與上網。</span></div></li>
+            <li><div><strong>Drop IoT → Main / private / admin</strong><span>阻擋 NAS、桌電和路由器管理面。</span></div></li>
+            <li><div><strong>Allow Guest → WAN，其他 Drop</strong><span>訪客只能上網，彼此也隔離。</span></div></li>
+          </ol>
+        </div>
+
+        <div class="callout"><strong>這裡的邊界要講清楚：</strong>TL‑SG105‑M2 會透明轉送 802.1Q 標籤，但不是能限制每埠 VLAN 的管理型交換器。因為你已確認所有實體有線端點都可信，這個簡化成立；若未來房間出租、出現有線 IoT 或想逐埠隔離，就先把弱電箱中央交換器換成 2.5G 管理型。</div>
+      </div>
+    </section>
+
+    <section id="settings">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">06 / SIMPLE → ADVANCED</span>
+          <div>
+            <h2>先用穩定基線，再一項項研究。</h2>
+            <p class="section-intro">不要第一天同時開 MLO、320MHz、自動最佳化與所有進階功能。先跑穩一週並備份設定；每次只改一項，才知道問題從哪裡來。</p>
+          </div>
+        </div>
+
+        <details open>
+          <summary>簡易模式：第一週建議值</summary>
+          <div>
+            <ul>
+              <li>兩台 AP 使用相同 SSID 與密碼，選 WPA2/WPA3 transition；有舊 IoT 時另外放 IoT SSID。</li>
+              <li>2.4GHz：20MHz；5GHz：80MHz；6GHz：先 160MHz。兩台 AP 選不重疊頻道，不要都鎖最大功率。</li>
+              <li>MLO、Smart Queues、每晚自動最佳化先關閉；500/500M 不需要靠 QoS 補救。</li>
+              <li>更新到 latest stable，而非 release candidate；設定完成立刻匯出備份。</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>進階模式：穩定後再試</summary>
+          <div>
+            <ul>
+              <li>開 Fast Roaming 前先確認所有常用裝置相容；走動視訊測試沒有斷線再保留。</li>
+              <li>320MHz 與 MLO 只對支援的 Wi‑Fi 7 客戶端有意義；分別開啟、分別測速與觀察一週。</li>
+              <li>IoT 需要 AirPlay／Chromecast 時，只開 mDNS，並建立「指定來源 → 指定服務」例外，不要整個 VLAN 放行。</li>
+              <li>啟用 IDS/IPS 後重測 WAN；UX7 官方標示 2.3Gbps IDS/IPS，對 500M 方案有餘裕。</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>遠端回家：NAS 與桌電</summary>
+          <div>
+            <ul>
+              <li>在 NAS 與桌電安裝 Tailscale，手機先關 Wi‑Fi、用 5G 行動網路測連線。</li>
+              <li>不要把 SMB、RDP 或 NAS 管理頁直接 port forward 到 Internet。</li>
+              <li>若未來要用 UX7 內建 WireGuard 當備援，先確認 ISP 提供可被連入的公網 IP。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">07 / INSTALL + ACCEPTANCE</span>
+          <div>
+            <h2>照順序裝，當天就能驗收。</h2>
+            <p class="section-intro">安裝前有兩個未知：弱電箱實際空間，以及標示 Cat6 的牆內線與端接品質。先量再下單：UX7 為 117 × 117 × 42.5mm；TL‑SG105‑M2 約 209 × 126 × 26mm，還要留變壓器與散熱間隙。</p>
+          </div>
+        </div>
+
+        <ol class="timeline">
+          <li><div><h3>量弱電箱、盤點線材</h3><p>確認 UX7、交換器、ONT 不互相疊壓，周圍至少留基本進排氣空間。塞不下時，把 UX7 或交換器放入口旁的通風層架，拓樸不變。</p></div></li>
+          <li><div><h3>先做有線骨幹</h3><p>ONT → UX7 #1 → 中央交換器；再接四個房間孔。客廳與工作室都是「牆孔 → UX7 AP 的 10G 埠 → UX7 2.5G 埠 → 房內交換器」。</p></div></li>
+          <li><div><h3>設定中華電信 WAN</h3><p>向中華電信確認 PPPoE 帳密與 ONT 模式，讓 UX7 撥號，避免雙重 NAT。IPv6 依現場取得的 prefix delegation 設定；沒有 MOD，所以不需保留 IPTV 專用埠。</p></div></li>
+          <li><div><h3>收編兩台 AP</h3><p>UX7 #2、#3 選 AP mode，納入 #1 的本機 UniFi Network 管理；關閉 #1 無線電，建立 Main／IoT／Guest 三組網路與 SSID。</p></div></li>
+          <li><div><h3>驗證再搬進定位</h3><p>先在桌面接完、確認所有設備更新與重新開機正常，再固定到弱電箱和房內位置。這比在箱內反覆拔插安全。</p></div></li>
+        </ol>
+
+        <div class="test-strip" aria-label="驗收門檻">
+          <div class="test"><strong>2.2 Gbps+</strong><span>兩台 2.5G 電腦以 iperf3 雙向測；並檢查無 CRC / error。</span></div>
+          <div class="test"><strong>−65 dBm</strong><span>常用位置 5GHz 目標；低於 −67 dBm 先移 AP，再考慮第 3 點。</span></div>
+          <div class="test"><strong>0 access</strong><span>IoT、Guest 可上網，但不能碰 NAS、Main 私網或管理頁。</span></div>
+          <div class="test"><strong>24 hours</strong><span>弱電箱運轉一天後摸查異常高溫，並測斷電重啟能自動恢復。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="alternatives">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">08 / WHY THIS SET</span>
+          <div>
+            <h2>其他組合不是不能用，只是更不合這間房。</h2>
+            <p class="section-intro">主方案的重點不是品牌光環，而是小體積、本機集中管理、DC 供電、6GHz、2.5G 與預算同時成立。</p>
+          </div>
+        </div>
+
+        <div class="alternatives">
+          <article class="alternative">
+            <div><span class="rank">VALUE OPTION</span><h3>ASUS RT‑BE92U ×3</h3></div>
+            <div class="alt-price">NT$23,097</div>
+            <p>不必另買交換器，價格漂亮；但單台約 247 × 102 × 287mm，弱電箱極可能放不下。若實測空間足夠、較重視省錢與家用介面，可列第二選擇。<br><a class="source-link" href="https://www.asus.com/tw/networking-iot-servers/wifi-7/all-series/asus-rt-be92u/techspec/" target="_blank" rel="noreferrer">官方規格 ↗</a></p>
+          </article>
+          <article class="alternative">
+            <div><span class="rank">BUSINESS OPTION</span><h3>TP‑Link Omada 完整組</h3></div>
+            <div class="alt-price">約 NT$49,753</div>
+            <p>EAP772、ER707‑M2、OC200 加三台交換器的商用架構完整，但兩台 AP 就超過三萬元，且 EAP772 的 12V 變壓器不隨附。<br><a class="source-link" href="https://www.tp-link.com/tw/business-networking/omada-wifi-wifi7/eap772/%28us%29%20v1/" target="_blank" rel="noreferrer">EAP772 官方規格 ↗</a></p>
+          </article>
+          <article class="alternative">
+            <div><span class="rank">MIXED OPTION</span><h3>UniFi 閘道器 + Zyxel AP</h3></div>
+            <div class="alt-price">AP ×2 = NT$20,998</div>
+            <p>NWA130BE 的商用規格有吸引力，但目前可買通路為 NT$10,499／台；加上合規 2.5G 閘道器、房內交換器與電源後會超過三萬元，而且 AP 與 UniFi 閘道器不能在同一個本機控制台管理。<br><a class="source-link" href="https://www.zyxel.com/tw/zh/products/wireless/nwa130be/specifications" target="_blank" rel="noreferrer">NWA130BE 官方規格 ↗</a> · <a class="source-link" href="https://24h.pchome.com.tw/prod/DRAF0I-A900HFAV2" target="_blank" rel="noreferrer">目前通路價 ↗</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-index">09 / SOURCES</span>
+          <div>
+            <h2>規格、設定與限制，都有來源。</h2>
+            <p class="section-intro">售價、庫存、保固與韌體都會變動；付款前請再看結帳總額與台灣公司貨標示。本頁未使用原始平面圖，也不公開地址。</p>
+          </div>
+        </div>
+
+        <ul class="source-list">
+          <li><a href="https://techspecs.ui.com/unifi/cloud-gateways/ux7" target="_blank" rel="noreferrer">UX7 技術規格</a><span>Wi‑Fi 7 三頻、埠速、尺寸、用電、IDS/IPS、AP mode</span></li>
+          <li><a href="https://www.ui.com/support/warranty/?direct=true" target="_blank" rel="noreferrer">Ubiquiti 官方直購保固</a><span>官方商店購買設備為兩年有限保固</span></li>
+          <li><a href="https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs" target="_blank" rel="noreferrer">UniFi：建立 VLAN</a><span>Virtual Network 與 VLAN 建立方式</span></li>
+          <li><a href="https://help.ui.com/hc/en-us/articles/115003173168-Zone-Based-Firewalls-in-UniFi" target="_blank" rel="noreferrer">UniFi：Zone-based firewall</a><span>網路區域與跨區防火牆規則</span></li>
+          <li><a href="https://help.ui.com/hc/en-us/articles/360052548713-WAN-Failover-Load-Balancing-and-Port-Remapping-on-UniFi-Gateways" target="_blank" rel="noreferrer">UniFi：WAN 與 PPPoE</a><span>PPPoE 帳號與 WAN 設定</span></li>
+          <li><a href="https://help.ui.com/hc/en-us/articles/36378535649687-Configuring-IPv6-in-UniFi" target="_blank" rel="noreferrer">UniFi：IPv6</a><span>WAN / LAN IPv6 與 prefix delegation</span></li>
+          <li><a href="https://www.tp-link.com/us/support/faq/910/" target="_blank" rel="noreferrer">TP‑Link：無網管交換器與 802.1Q</a><span>Tagged frame 可透明轉送，但無法做逐埠政策</span></li>
+          <li><a href="https://archive.nbaset.ethernetalliance.org/alliance/faq/" target="_blank" rel="noreferrer">Ethernet Alliance：2.5GBASE‑T</a><span>2.5GBASE‑T 對既有 Cat5e / Cat6 佈線的支援</span></li>
+          <li><a href="https://www.cisco.com/c/en/us/products/collateral/networking/wireless/wifi7-future-of-wireless-dg.html" target="_blank" rel="noreferrer">Cisco：Wi‑Fi 7 設計指南</a><span>6GHz 覆蓋、320MHz 與部署考量</span></li>
+          <li><a href="https://community.ui.com/releases/fb0cb261-2309-4cc6-b36f-98fb7a1966f6?replyId=1f9880a5-c4a3-47ca-b8c5-ee084d3d0ba5" target="_blank" rel="noreferrer">UX7 AP mode 乙太網路埠說明</a><span>AP mode 下第二個 Ethernet 埠可供下游設備使用</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p><strong>最終採購一句話：</strong>先量弱電箱；尺寸通過後買 UX7 三台、TL‑SG105‑M2 三台。先裝兩個 Wi‑Fi 點，實測仍有死角才增加，不為了「看起來完整」先多買一台。</p>
+      <span class="updated">CHECKED · 2026‑08‑24</span>
+    </div>
+  </footer>
+</body>
+</html>
