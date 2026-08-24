@@ -583,6 +583,7 @@
           </article>
         </div>
         <div class="callout"><strong>擴充規則很簡單：</strong>目前每台 5 埠剛好用滿。哪個房間多出第 5 台有線終端，就把該房交換器換成 8 埠 2.5G，原本 5 埠移去房間二或三，不必重買整套。</div>
+        <div class="callout"><strong>要接受的故障行為：</strong>客廳與工作室的 UX7 位於牆孔和房內交換器之間，所以 AP 重開、更新或故障時，該房會暫時失去跨房與 Internet 連線；同一台房內交換器上的設備仍可彼此傳輸。UX7 官方未公布 AP mode 兩埠橋接的 line‑rate 數據，安裝後要用跨房 <code>iperf3</code> 實測，不可只看「2.5G 已連線」。</div>
       </div>
     </section>
 
@@ -600,7 +601,7 @@
           <article class="vlan">
             <span class="vlan-id">VLAN 10 · 192.168.10.0/24</span>
             <h3>Main</h3>
-            <p>所有有線設備、NAS、AP 管理與主要 SSID。可互相傳檔，也可管理家中網路。</p>
+            <p>所有有線設備、NAS、AP 管理與主要 SSID；保持 native / untagged。可互相傳檔，也可管理家中網路。</p>
           </article>
           <article class="vlan">
             <span class="vlan-id">VLAN 20 · 192.168.20.0/24</span>
@@ -610,7 +611,7 @@
           <article class="vlan">
             <span class="vlan-id">VLAN 30 · 192.168.30.0/24</span>
             <h3>Guest</h3>
-            <p>訪客上網。啟用 client isolation，阻擋所有 private network 與設備管理介面。</p>
+            <p>訪客上網。阻擋所有 private network 與設備管理介面；另啟用 AP client isolation，並實測同 AP 與跨 AP 的訪客互相不可連線。</p>
           </article>
         </div>
 
@@ -624,11 +625,11 @@
             <li><div><strong>Allow Main → any</strong><span>可信任的電腦、主機與 NAS 正常使用。</span></div></li>
             <li><div><strong>Allow IoT → DNS / NTP / WAN</strong><span>只給基本解析、校時與上網。</span></div></li>
             <li><div><strong>Drop IoT → Main / private / admin</strong><span>阻擋 NAS、桌電和路由器管理面。</span></div></li>
-            <li><div><strong>Allow Guest → WAN，其他 Drop</strong><span>訪客只能上網，彼此也隔離。</span></div></li>
+            <li><div><strong>Allow Guest → WAN，其他 Drop</strong><span>訪客只能上網；彼此隔離需另開 AP client isolation 並實測。</span></div></li>
           </ol>
         </div>
 
-        <div class="callout"><strong>這裡的邊界要講清楚：</strong>TL‑SG105‑M2 會透明轉送 802.1Q 標籤，但不是能限制每埠 VLAN 的管理型交換器。因為你已確認所有實體有線端點都可信，這個簡化成立；若未來房間出租、出現有線 IoT 或想逐埠隔離，就先把弱電箱中央交換器換成 2.5G 管理型。</div>
+        <div class="callout"><strong>這裡的邊界要講清楚：</strong>TL‑SG105‑M2 會透明轉送 802.1Q 標籤，但不是能限制每埠 VLAN 的管理型交換器，因此 VLAN 20 / 30 標籤也會到達其他實體埠。因為你已確認所有實體有線端點都可信，這個簡化成立；若未來房間出租、出現有線 IoT 或想逐埠隔離，就先把弱電箱中央交換器換成 2.5G 管理型。UniFi 也不能管理三台 TP‑Link 或顯示其逐埠錯誤與速率。</div>
       </div>
     </section>
 
@@ -688,7 +689,7 @@
         </div>
 
         <ol class="timeline">
-          <li><div><h3>量弱電箱、盤點線材</h3><p>確認 UX7、交換器、ONT 不互相疊壓，周圍至少留基本進排氣空間。塞不下時，把 UX7 或交換器放入口旁的通風層架，拓樸不變。</p></div></li>
+          <li><div><h3>量弱電箱、盤點線材與插座</h3><p>確認 UX7、交換器、ONT 不互相疊壓，周圍至少留基本進排氣空間。弱電箱用排插容納 ONT、UX7、交換器；客廳與工作室各需兩個插座供 AP 與交換器。塞不下時，把 UX7 或交換器放入口旁的通風層架，拓樸不變。</p></div></li>
           <li><div><h3>先做有線骨幹</h3><p>ONT → UX7 #1 → 中央交換器；再接四個房間孔。客廳與工作室都是「牆孔 → UX7 AP 的 10G 埠 → UX7 2.5G 埠 → 房內交換器」。</p></div></li>
           <li><div><h3>設定中華電信 WAN</h3><p>向中華電信確認 PPPoE 帳密與 ONT 模式，讓 UX7 撥號，避免雙重 NAT。IPv6 依現場取得的 prefix delegation 設定；沒有 MOD，所以不需保留 IPTV 專用埠。</p></div></li>
           <li><div><h3>收編兩台 AP</h3><p>UX7 #2、#3 選 AP mode，納入 #1 的本機 UniFi Network 管理；關閉 #1 無線電，建立 Main／IoT／Guest 三組網路與 SSID。</p></div></li>
@@ -696,7 +697,7 @@
         </ol>
 
         <div class="test-strip" aria-label="驗收門檻">
-          <div class="test"><strong>2.2 Gbps+</strong><span>兩台 2.5G 電腦以 iperf3 雙向測；並檢查無 CRC / error。</span></div>
+          <div class="test"><strong>2.2 Gbps+</strong><span>用不同房間的 2.5G 電腦以 iperf3 雙向測，確認流量真的穿過 AP bridge。</span></div>
           <div class="test"><strong>−65 dBm</strong><span>常用位置 5GHz 目標；低於 −67 dBm 先移 AP，再考慮第 3 點。</span></div>
           <div class="test"><strong>0 access</strong><span>IoT、Guest 可上網，但不能碰 NAS、Main 私網或管理頁。</span></div>
           <div class="test"><strong>24 hours</strong><span>弱電箱運轉一天後摸查異常高溫，並測斷電重啟能自動恢復。</span></div>
